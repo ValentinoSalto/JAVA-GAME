@@ -21,4 +21,8 @@ public class Imagen {
 	public void setTransparencia(float a) {
 		s.setAlpha(a);
 	}
+	
+	public void setSize(float ancho, float alto) {
+		s.setSize(ancho, alto);
+	}
 }

@@ -3,6 +3,7 @@ package com.mygdx.game.pantallas;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.personajes.Imagen;
+import com.mygdx.game.utiles.Config;
 import com.mygdx.game.utiles.Recursos;
 import com.mygdx.game.utiles.Render;
 
@@ -15,6 +16,7 @@ public class PantallaMenu implements Screen{
 	public void show() {
 		
 		fondo = new Imagen(Recursos.FONDOMENU);
+		fondo.setSize(Config.ANCHO, Config.ALTO );
 		b = Render.batch;
 	}
 
