@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.pantallas.PantallaCarga;
 import com.mygdx.game.pantallas.PantallaMenu;
-import com.mygdx.game.personajes.Caballero;
+import com.mygdx.game.recursos.Caballero;
 import com.mygdx.game.utiles.Render;
 
 public class Mygame extends Game {
@@ -21,7 +21,7 @@ public class Mygame extends Game {
 		System.out.println("Bienvenido");
 		Render.app = this;
 		Render.batch = new SpriteBatch();
-		this.setScreen(new PantallaCarga()); //Muestro pantalla de carga.
+		this.setScreen(new PantallaMenu()); //Muestro pantalla de carga.
 		batch = new SpriteBatch();
 		
 		
