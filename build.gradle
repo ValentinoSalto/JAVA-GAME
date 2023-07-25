@@ -102,6 +102,8 @@ project(":core") {
         api "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
         api "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
         api "com.badlogicgames.box2dlights:box2dlights:$box2DLightsVersion"
+        api "com.badlogicgames.gdx:gdx-freetype:1.9.11" 
+        implementation "com.badlogicgames.gdx:gdx-scene2d:$gdxVersion"
         
     }
 }

@@ -1,4 +1,3 @@
-
 package com.mygdx.game;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -22,7 +21,7 @@ public class Mygame extends Game {
 		System.out.println("Bienvenido");
 		Render.app = this;
 		Render.batch = new SpriteBatch();
-		this.setScreen(new PantallaMenu());
+		this.setScreen(new PantallaCarga()); //Muestro pantalla de carga.
 		batch = new SpriteBatch();
 		
 		

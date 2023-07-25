@@ -19,7 +19,7 @@ public class PantallaCarga implements Screen {
 		System.out.println("show");
 		fondo = new Imagen(Recursos.PANTALLACARGA);
 		b = Render.batch;
-		fondo.setTransparencia(0 );
+		fondo.setTransparencia(0);
 	}
 
 	@Override
