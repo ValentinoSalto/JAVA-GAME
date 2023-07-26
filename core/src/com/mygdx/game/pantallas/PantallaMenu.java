@@ -35,9 +35,9 @@ public class PantallaMenu implements Screen{
 		// Crea e inicializa el Stage
 	    stage = new Stage();  
 	    
-	    // Configura el procesador de entrada para el Stage
+	    /*// Configura el procesador de entrada para el Stage
 	    Gdx.input.setInputProcessor(new Entradas());
-	    
+	    */
 	    // Carga el fondo del menú
 		fondo = new Imagen(Recursos.FONDOMENU);		
 		fondo.setSize(Config.ANCHO, Config.ALTO);
@@ -45,14 +45,12 @@ public class PantallaMenu implements Screen{
 		//Esto es para ahorrarse de poner Render.batch
 		b = Render.batch;
 		
-		 Gdx.input.setInputProcessor(stage);
-		 
-		
-		
+		// Configura el procesador de entrada para el Stage
+		Gdx.input.setInputProcessor(stage);
+		 			
 		// Crea un nuevo Skin para los botones
         skin = new Skin();
         
-       
         // Crea un Pixmap blanco para el drawable "white_pixel"
         Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
         pixmap.setColor(Color.WHITE);
@@ -84,21 +82,21 @@ public class PantallaMenu implements Screen{
         
         
         // Crea los botones y agrega acciones a los ClickListeners
-        final TextButton playButton = new TextButton("Start", skin);
+        final TextButton playButton = new TextButton("START", skin);
         playButton.addListener(new ClickListener() {
             @Override
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
                 Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand); // Cambia el cursor a la mano (Hand) cuando el mouse entra en el botón
                 playButton.setStyle(buttonStyleHover); // Cambia el estilo del botón al estilo con fondo blanco cuando el cursor está sobre él
-                System.out.println("Start");
-                playButton.setText("< Start >");               
+                System.out.println("START");
+                playButton.setText("< START >");               
             }
 
             @Override
             public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
                 Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Arrow); // Restaura el cursor predeterminado (flecha) cuando el mouse sale del botón
                 playButton.setStyle(buttonStyle); // Restaura el estilo normal del botón cuando el cursor sale de él
-                playButton.setText("Start");  
+                playButton.setText("START");  
             }
 
             @Override
@@ -108,7 +106,7 @@ public class PantallaMenu implements Screen{
             }
         });
         
-        final TextButton configButton = new TextButton("Config", skin);
+        final TextButton configButton = new TextButton("CONFIG", skin);
         
 
         configButton.addListener(new ClickListener() {
@@ -116,8 +114,8 @@ public class PantallaMenu implements Screen{
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
                 Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
                 configButton.setStyle(buttonStyleHover);
-                System.out.println("Config");
-                configButton.setText("< Config >");  
+                System.out.println("CONFIG");
+                configButton.setText("< CONFIG >");  
                 
             }
 
@@ -125,7 +123,7 @@ public class PantallaMenu implements Screen{
             public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
                 Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Arrow);
                 configButton.setStyle(buttonStyle);
-                configButton.setText("Config");  
+                configButton.setText("CONFIG");  
             }
 
             @Override
@@ -135,7 +133,7 @@ public class PantallaMenu implements Screen{
             }
         });
         
-        final TextButton exitButton = new TextButton("Quit", skin);
+        final TextButton exitButton = new TextButton("QUIT", skin);
        
 
         exitButton.addListener(new ClickListener() {
@@ -143,8 +141,8 @@ public class PantallaMenu implements Screen{
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
                 Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
                 exitButton.setStyle(buttonStyleHover);
-                System.out.println("Quit");
-                exitButton.setText("< Quit >");  
+                System.out.println("QUIT");
+                exitButton.setText("< QUIT >");  
                
             }
 
@@ -152,7 +150,7 @@ public class PantallaMenu implements Screen{
             public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
                 Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Arrow);
                 exitButton.setStyle(buttonStyle);
-                exitButton.setText("Quit");  
+                exitButton.setText("QUIT");  
             }
 
             @Override

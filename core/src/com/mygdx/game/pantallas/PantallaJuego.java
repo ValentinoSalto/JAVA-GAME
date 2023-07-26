@@ -2,26 +2,29 @@ package com.mygdx.game.pantallas;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.mygdx.game.recursos.Caballero;
 import com.mygdx.game.recursos.Imagen;
-import com.mygdx.game.utiles.Config;
-import com.mygdx.game.utiles.Recursos;
 import com.mygdx.game.utiles.Render;
 
 public class PantallaJuego implements Screen{
 
 	Imagen personaje;
 	SpriteBatch b;
-	
+	Caballero caballero;
 	ShapeRenderer sr; // Agrega un objeto ShapeRenderer
 	
 	@Override
 	public void show() { 
-		personaje = new Imagen(Recursos.CABALLERO);		
+		/*personaje = new Imagen(Recursos.CABALLERO);		
 		personaje.setSize(Config.PERSONAJEANCHO, Config.PERSONAJEALTO);
 		personaje.setPosition(Config.X, Config.Y);
+		*/
+		
+        caballero = new Caballero(100,100, 200, 200);
 		b = Render.batch;
 		sr = new ShapeRenderer(); // Inicializa el ShapeRenderer
 		
@@ -31,10 +34,11 @@ public class PantallaJuego implements Screen{
 	@Override
 	public void render(float delta) {
 		b.begin();
-			// Limpio la pantalla
+			// Limpio la pantalla (solamente para ver bien el caballero despues va a tener un fondo)
 			Gdx.gl.glClearColor(0, 0, 0, 1);
 			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-			personaje.dibujar();
+			
+			caballero.dibujar(b);
 		b.end();
 
 		// Inicia el dibujado de líneas

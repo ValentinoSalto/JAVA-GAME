@@ -11,7 +11,7 @@ public class Caballero {
 	public float x, y;
 	
 	public Caballero(float x, float y, float ancho, float alto) {
-		textura = new Texture ("Protect.png");
+		textura = new Texture ("Personajes/Knight_1/Protect.png");
 		spr = new Sprite(textura);
 		this.x = x;
 		this.y = y;
@@ -22,7 +22,14 @@ public class Caballero {
 		
 	}
 
+	
+
 	public void dibujar(SpriteBatch batch) {
+		spr.draw(batch);
+		
+	}
+	
+	public void setposition(SpriteBatch batch) {
 		spr.draw(batch);
 		
 	}
