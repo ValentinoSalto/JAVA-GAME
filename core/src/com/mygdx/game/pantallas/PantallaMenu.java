@@ -46,6 +46,8 @@ public class PantallaMenu implements Screen{
 		b = Render.batch;
 		
 		 Gdx.input.setInputProcessor(stage);
+		 
+		
 		
 		// Crea un nuevo Skin para los botones
         skin = new Skin();
@@ -77,7 +79,7 @@ public class PantallaMenu implements Screen{
         // Crea el estilo para el TextButton cuando el cursor está sobre él (Hand y fondo blanco)
         final TextButton.TextButtonStyle buttonStyleHover = new TextButton.TextButtonStyle();
         buttonStyleHover.font = font; // Asigna la fuente al estilo del botón
-        buttonStyleHover.fontColor = Color.YELLOW; // Establece el color de la fuente cuando el cursor está sobre el botón
+        //buttonStyleHover.fontColor = Color.YELLOW; // Establece el color de la fuente cuando el cursor está sobre el botón
         //buttonStyleHover.over = skin.getDrawable("white_pixel"); // Establece un drawable blanco para el fondo del botón cuando el cursor está sobre él
         
         
@@ -102,7 +104,7 @@ public class PantallaMenu implements Screen{
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 // Realiza las acciones del botón cuando es clickeado
-                // game.setScreen(new GameScreen());
+            	Render.app.setScreen(new PantallaJuego());
             }
         });
         
@@ -129,7 +131,7 @@ public class PantallaMenu implements Screen{
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 // Realiza las acciones del botón cuando es clickeado
-            	
+            	 Render.app.setScreen(new PantallaConfig());
             }
         });
         
@@ -141,7 +143,7 @@ public class PantallaMenu implements Screen{
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
                 Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
                 exitButton.setStyle(buttonStyleHover);
-                System.out.println("Exit");
+                System.out.println("Quit");
                 exitButton.setText("< Quit >");  
                
             }
