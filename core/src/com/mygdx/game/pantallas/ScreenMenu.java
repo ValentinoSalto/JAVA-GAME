@@ -22,25 +22,25 @@ import com.mygdx.game.utiles.Recursos;
 import com.mygdx.game.utiles.Render;
 
 
-public class PantallaMenu implements Screen{
+public class ScreenMenu implements Screen{
 	
-	Imagen fondo;
+	Imagen background;
 	SpriteBatch b;
 	BitmapFont fuente;
 	private Skin skin;
 	private Stage stage;
-	private Music backgroundMusic;
 	private Music select;
+	private Music backgroundMusic;
 	
 	public void show() { // Aquí puedes inicializar elementos del menú, como botones o texturas.
-		
 		// Carga la música de fondo desde el archivo "menu_music.mp3"
         backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("Sounds/Music/Menumusic.mp3"));
         // Configura la música para que se repita en bucle
         backgroundMusic.setLooping(true);
         // Reproduce la música de fondo
         backgroundMusic.play();
-        // Carga la música de fondo desde el archivo "click_music.mp3"
+		
+        // Carga la música de fondo desde el archivo "menu_music.mp3"
         select = Gdx.audio.newMusic(Gdx.files.internal("Sounds/FX/click.mp3"));
         
 		// Crea e inicializa el Stage
@@ -50,8 +50,8 @@ public class PantallaMenu implements Screen{
 	    Gdx.input.setInputProcessor(new Entradas());
 	    */
 	    // Carga el fondo del menú
-		fondo = new Imagen(Recursos.FONDOMENU);		
-		fondo.setSize(Config.ANCHO, Config.ALTO);
+		background = new Imagen(Recursos.FONDOMENU);		
+		background.setSize(Config.ANCHO, Config.ALTO);
 		
 		//Esto es para ahorrarse de poner Render.batch
 		b = Render.batch;
@@ -115,9 +115,10 @@ public class PantallaMenu implements Screen{
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 // Realiza las acciones del botón cuando es clickeado
-            	Render.app.setScreen(new PantallaJuego());
-            	// Libera los recursos al cerrar la pantalla
-                backgroundMusic.dispose();
+            	Render.app.setScreen(new ScreenGame());
+            	backgroundMusic.dispose();
+            	
+                
             }
         });
         
@@ -146,7 +147,7 @@ public class PantallaMenu implements Screen{
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 // Realiza las acciones del botón cuando es clickeado
-            	 Render.app.setScreen(new PantallaConfig());
+            	 Render.app.setScreen(new ScreenConfig());
             	 
             }
         });
@@ -210,7 +211,7 @@ public class PantallaMenu implements Screen{
 		// Aca dibujas los elementos del menú.
 		
 		b.begin();
-			fondo.dibujar();
+			background.dibujar();
 		b.end();
 		
 		// Actualiza la lógica y el dibujado de los elementos de la escena
@@ -244,7 +245,7 @@ public class PantallaMenu implements Screen{
 
 	@Override
 	public void dispose() {
-		
+		backgroundMusic.dispose();
 		
 	}
 

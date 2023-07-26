@@ -1,11 +1,13 @@
 package com.mygdx.game.pantallas;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.recursos.Imagen;
 import com.mygdx.game.utiles.Recursos;
 import com.mygdx.game.utiles.Render;
 
-public class PantallaCarga implements Screen {
+public class ScreenLoad implements Screen {
 	
 	Imagen fondo;
 	SpriteBatch b;
@@ -16,6 +18,8 @@ public class PantallaCarga implements Screen {
 	
 	@Override
 	public void show() {
+		
+        
 		System.out.println("show");
 		fondo = new Imagen(Recursos.PANTALLACARGA);
 		b = Render.batch;
@@ -60,7 +64,7 @@ public class PantallaCarga implements Screen {
 			contTiempoTermina+=0.04f;
 			if(contTiempoTermina>tiempoTermina) {
 				System.out.println("Cambio de pantalla");
-				Render.app.setScreen(new PantallaMenu());
+				Render.app.setScreen(new ScreenMenu());
 			}
 		}
 		 
@@ -95,5 +99,6 @@ public class PantallaCarga implements Screen {
 		
 		
 	}
+	
 
 }

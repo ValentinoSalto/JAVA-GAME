@@ -1,6 +1,7 @@
 package com.mygdx.game.pantallas;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Cursor;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -19,16 +20,20 @@ import com.mygdx.game.utiles.Config;
 import com.mygdx.game.utiles.Recursos;
 import com.mygdx.game.utiles.Render;
 
-public class PantallaConfig implements Screen {
+public class ScreenConfig implements Screen {
 	
 	Imagen fondo;
 	SpriteBatch b;
 	private Skin skin;
 	private Stage stage;
+	private Music select;
 	
 	
 	@Override
 	public void show() {
+		
+		// Carga la música de fondo desde el archivo "menu_music.mp3"
+        select = Gdx.audio.newMusic(Gdx.files.internal("Sounds/FX/click.mp3"));
 		
 		// Crea e inicializa el Stage
 	    stage = new Stage();
@@ -73,6 +78,8 @@ public class PantallaConfig implements Screen {
 		backButton.addListener(new ClickListener() {
 			@Override
 			public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+				//Llamo al sonido
+				select.play();
 				Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand); // Cambia el cursor a la mano (Hand) cuando el mouse entra en el botón																	
 				backButton.setStyle(buttonStyleHover); // Cambia el estilo del botón al estilo con fondo blanco cuando el cursor está sobre él															
 				backButton.setText("< BACK >");
@@ -81,6 +88,8 @@ public class PantallaConfig implements Screen {
 
 			@Override
 			public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
+				
+				select.dispose();
 				Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Arrow); // Restaura el cursor predeterminado (flecha)
 																			// cuando el mouse sale del botón
 				backButton.setStyle(buttonStyle); // Restaura el estilo normal del botón cuando el cursor sale de él
@@ -90,7 +99,7 @@ public class PantallaConfig implements Screen {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				// Realiza las acciones del botón cuando es clickeado
-				Render.app.setScreen(new PantallaMenu());
+				Render.app.setScreen(new ScreenMenu());
 			}
 
 		});
