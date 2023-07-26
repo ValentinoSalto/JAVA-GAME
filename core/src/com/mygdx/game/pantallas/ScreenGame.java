@@ -54,7 +54,6 @@ public class ScreenGame implements Screen{
         b.begin();
 		
 			knight.render(b);
-			knight.x+=1;
 	
 			
 		b.end();
