@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.mygdx.game.recursos.Caballero;
+import com.mygdx.game.recursos.Knight;
 import com.mygdx.game.recursos.Caballero2;
 import com.mygdx.game.recursos.Caballero3;
 import com.mygdx.game.utiles.Render;
@@ -16,7 +16,7 @@ public class ScreenGame implements Screen{
 
 	Image personaje;
 	SpriteBatch b;
-	private Caballero caballero;
+	private Knight knight;
 	ShapeRenderer sr; // Agrega un objeto ShapeRenderer
 	
 	
@@ -29,7 +29,7 @@ public class ScreenGame implements Screen{
 		b = Render.batch;
 		sr = new ShapeRenderer(); // Inicializa el ShapeRenderer
 		
-        caballero = new Caballero(100,100, 200, 200);
+        knight = new Knight(100,100, 200, 200);
         
         
 		
@@ -53,8 +53,8 @@ public class ScreenGame implements Screen{
 					
         b.begin();
 		
-			caballero.render(b);
-			caballero.x+=1;
+			knight.render(b);
+			knight.x+=1;
 	
 			
 		b.end();

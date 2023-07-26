@@ -7,12 +7,11 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.pantallas.ScreenLoad;
 import com.mygdx.game.pantallas.ScreenMenu;
-import com.mygdx.game.recursos.Caballero;
 import com.mygdx.game.utiles.Render;
 
 public class Mygame extends Game {
 	SpriteBatch batch;
-	Caballero caballero;
+	
 
 
 	

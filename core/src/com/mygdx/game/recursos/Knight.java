@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class Caballero {
+public class Knight {
 	
 	
 	public Sprite spr;
@@ -16,7 +16,7 @@ public class Caballero {
 	//private TextureRegion [] regionsMove
 	
 	
-	public Caballero(float x, float y, float width, float height) {
+	public Knight(float x, float y, float width, float height) {
 		
 		spr = new Sprite( new Texture(Gdx.files.internal("Personajes/Knight_1/idle.png")),71,86);
 		this.x = x;
