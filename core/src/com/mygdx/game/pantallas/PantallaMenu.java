@@ -1,13 +1,14 @@
 package com.mygdx.game.pantallas;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Cursor;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -15,7 +16,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.mygdx.game.io.Entradas;
 import com.mygdx.game.recursos.Imagen;
 import com.mygdx.game.utiles.Config;
 import com.mygdx.game.utiles.Recursos;
@@ -29,9 +29,20 @@ public class PantallaMenu implements Screen{
 	BitmapFont fuente;
 	private Skin skin;
 	private Stage stage;
+	private Music backgroundMusic;
+	private Music select;
 	
 	public void show() { // Aquí puedes inicializar elementos del menú, como botones o texturas.
 		
+		// Carga la música de fondo desde el archivo "menu_music.mp3"
+        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("Sounds/Music/Menumusic.mp3"));
+        // Configura la música para que se repita en bucle
+        backgroundMusic.setLooping(true);
+        // Reproduce la música de fondo
+        backgroundMusic.play();
+        // Carga la música de fondo desde el archivo "click_music.mp3"
+        select = Gdx.audio.newMusic(Gdx.files.internal("Sounds/FX/click.mp3"));
+        
 		// Crea e inicializa el Stage
 	    stage = new Stage();  
 	    
@@ -86,6 +97,7 @@ public class PantallaMenu implements Screen{
         playButton.addListener(new ClickListener() {
             @Override
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+            	select.play();
                 Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand); // Cambia el cursor a la mano (Hand) cuando el mouse entra en el botón
                 playButton.setStyle(buttonStyleHover); // Cambia el estilo del botón al estilo con fondo blanco cuando el cursor está sobre él
                 System.out.println("START");
@@ -96,13 +108,16 @@ public class PantallaMenu implements Screen{
             public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
                 Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Arrow); // Restaura el cursor predeterminado (flecha) cuando el mouse sale del botón
                 playButton.setStyle(buttonStyle); // Restaura el estilo normal del botón cuando el cursor sale de él
-                playButton.setText("START");  
+                playButton.setText("START");
+                select.dispose();
             }
 
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 // Realiza las acciones del botón cuando es clickeado
             	Render.app.setScreen(new PantallaJuego());
+            	// Libera los recursos al cerrar la pantalla
+                backgroundMusic.dispose();
             }
         });
         
@@ -112,6 +127,7 @@ public class PantallaMenu implements Screen{
         configButton.addListener(new ClickListener() {
             @Override
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+            	select.play();
                 Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
                 configButton.setStyle(buttonStyleHover);
                 System.out.println("CONFIG");
@@ -124,12 +140,14 @@ public class PantallaMenu implements Screen{
                 Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Arrow);
                 configButton.setStyle(buttonStyle);
                 configButton.setText("CONFIG");  
+                select.dispose();
             }
 
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 // Realiza las acciones del botón cuando es clickeado
             	 Render.app.setScreen(new PantallaConfig());
+            	 
             }
         });
         
@@ -139,6 +157,7 @@ public class PantallaMenu implements Screen{
         exitButton.addListener(new ClickListener() {
             @Override
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+            	select.play();
                 Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
                 exitButton.setStyle(buttonStyleHover);
                 System.out.println("QUIT");
@@ -151,6 +170,7 @@ public class PantallaMenu implements Screen{
                 Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Arrow);
                 exitButton.setStyle(buttonStyle);
                 exitButton.setText("QUIT");  
+                select.dispose();
             }
 
             @Override
