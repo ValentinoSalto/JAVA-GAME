@@ -1,5 +1,6 @@
 package com.mygdx.game.pantallas;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -67,6 +68,8 @@ public class ScreenGame implements Screen{
 
 		// Finaliza el dibujado de líneas
 		sr.end();
+		
+		
 	}
 	
 
