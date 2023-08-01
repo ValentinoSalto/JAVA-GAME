@@ -33,7 +33,7 @@ public class Knight {
 		regionsMovement = new TextureRegion[4];
 
 		for (int i = 0; i < 4; i++)
-			regionsMovement[i] = temp[0][i];
+		regionsMovement[i] = temp[0][i];
 		animation = new Animation(1 / 6f, regionsMovement);
 		time = 0f;
 	
@@ -78,8 +78,4 @@ public class Knight {
 		}
 	*/
 	}
-	
-	
-	
-	
 }

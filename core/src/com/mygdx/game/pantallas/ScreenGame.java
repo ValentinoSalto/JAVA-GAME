@@ -9,15 +9,14 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.mygdx.game.recursos.Knight;
-import com.mygdx.game.recursos.Caballero2;
-import com.mygdx.game.recursos.Caballero3;
+import com.mygdx.game.recursos.Knight3;
 import com.mygdx.game.utiles.Render;
 
 public class ScreenGame implements Screen{
 
 	Image personaje;
 	SpriteBatch b;
-	private Knight knight;
+	private Knight3 knight;
 	ShapeRenderer sr; // Agrega un objeto ShapeRenderer
 	
 	
@@ -30,7 +29,7 @@ public class ScreenGame implements Screen{
 		b = Render.batch;
 		sr = new ShapeRenderer(); // Inicializa el ShapeRenderer
 		
-        knight = new Knight(100,100, 200, 200);
+        knight = new Knight3(100,100, 200, 200);
         
         
 		
@@ -49,8 +48,27 @@ public class ScreenGame implements Screen{
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
-		// Actualiza la posición del Caballero
-        update(delta);
+
+        // Maneja las entradas del teclado para cambiar el estado del personaje
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) {
+            knight.cambiarEstado(Knight3.EstadoPersonaje.WALKING_LEFT);
+        } else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) {
+            knight.cambiarEstado(Knight3.EstadoPersonaje.WALKING_RIGHT);
+        } else if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+        	knight.cambiarEstado(Knight3.EstadoPersonaje.JUMP);
+        } else if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+        	knight.cambiarEstado(Knight3.EstadoPersonaje.ATTACK);
+        } else if (Gdx.input.isButtonPressed(Input.Buttons.RIGHT)) {
+        	knight.cambiarEstado(Knight3.EstadoPersonaje.COVER);
+        } else {
+        	knight.cambiarEstado(Knight3.EstadoPersonaje.IDLE);
+        }
+
+        // Actualiza la animación del personaje según el estado actual
+        knight.updateAnimation(delta);
+
+		
+	
 					
         b.begin();
 		
