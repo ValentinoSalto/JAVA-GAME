@@ -43,9 +43,9 @@ public class Knight3 {
         this.ancho = ancho;
 
         // Carga las texturas para las animaciones
-        Texture idleTexture = new Texture(Gdx.files.internal("Personajes/Knight_3/idle.png"));
-        Texture walkingLeftTexture = new Texture(Gdx.files.internal("Personajes/Knight_3/Idleinvertido.png"));
-        Texture walkingRightTexture = new Texture(Gdx.files.internal("Personajes/Knight_3/Walk.png"));
+        Texture idleTexture = new Texture(Gdx.files.internal("Personajes/Knight_1/idle.png"));
+        Texture walkingLeftTexture = new Texture(Gdx.files.internal("Personajes/Knight_1/Idleinvertido.png"));
+        Texture walkingRightTexture = new Texture(Gdx.files.internal("Personajes/Knight_1/Walk.png"));
         // Carga las texturas para las otras animaciones (JUMP, RUN, ATTACK, COVER)
         // ...
 
@@ -102,11 +102,12 @@ public class Knight3 {
     }
 
     public void render(SpriteBatch batch) {
+    	
+    	time += Gdx.graphics.getDeltaTime();
+  		currentFrame = (TextureRegion) idleAnimation.getKeyFrame(time,true);
         // Dibuja el sprite correspondiente a la animación del estado actual
-        spr.draw(batch);
-        time += Gdx.graphics.getDeltaTime();
-		currentFrame = (TextureRegion) idleAnimation.getKeyFrame(time,true);
-		batch.draw(currentFrame,x,y,alto,ancho);
+    	spr.draw(batch);
+      
         
 
     }
