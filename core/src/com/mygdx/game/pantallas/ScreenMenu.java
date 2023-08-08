@@ -4,11 +4,13 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Cursor;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -16,11 +18,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.recursos.Imagen;
 import com.mygdx.game.utiles.Config;
 import com.mygdx.game.utiles.Recursos;
 import com.mygdx.game.utiles.Render;
-
+import com.badlogic.gdx.utils.Scaling;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 
 public class ScreenMenu implements Screen{
 	
@@ -31,6 +36,8 @@ public class ScreenMenu implements Screen{
 	private Stage stage;
 	private Music select;
 	private Music backgroundMusic;
+	
+	
 	
 	public void show() { // Aquí puedes inicializar elementos del menú, como botones o texturas.
 		// Carga la música de fondo desde el archivo "menu_music.mp3"
@@ -55,6 +62,8 @@ public class ScreenMenu implements Screen{
 		
 		//Esto es para ahorrarse de poner Render.batch
 		b = Render.batch;
+		
+		
 		
 		// Configura el procesador de entrada para el Stage
 		Gdx.input.setInputProcessor(stage);
@@ -200,6 +209,7 @@ public class ScreenMenu implements Screen{
 		stage.addActor(table);
 		
 		
+		
 	    
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 		
@@ -208,7 +218,10 @@ public class ScreenMenu implements Screen{
 	@Override
 	public void render(float delta) {
 		
+		
 		// Aca dibujas los elementos del menú.
+		
+		
 		
 		b.begin();
 			background.dibujar();
@@ -217,10 +230,12 @@ public class ScreenMenu implements Screen{
 		// Actualiza la lógica y el dibujado de los elementos de la escena
 		stage.act(delta);
 		stage.draw();
+		
 	}
 
 	@Override
 	public void resize(int width, int height) {
+		
 		
 		
 	}
@@ -246,6 +261,7 @@ public class ScreenMenu implements Screen{
 	@Override
 	public void dispose() {
 		backgroundMusic.dispose();
+		
 		
 	}
 
