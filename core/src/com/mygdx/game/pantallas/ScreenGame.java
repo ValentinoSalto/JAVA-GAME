@@ -3,13 +3,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.mygdx.game.recursos.Knight;
+import com.mygdx.game.recursos.Ghost;
 import com.mygdx.game.recursos.Knight3;
+import com.mygdx.game.utiles.Config;
 import com.mygdx.game.utiles.Render;
 
 public class ScreenGame implements Screen{
@@ -17,11 +19,20 @@ public class ScreenGame implements Screen{
 	Image personaje;
 	SpriteBatch b;
 	private Knight3 knight;
+	private Ghost ghost;
 	ShapeRenderer sr; // Agrega un objeto ShapeRenderer
+	private TiledMap tiledMap;
+	//creo la camara
+	private OrthographicCamera cam;
 	
 	
 	@Override
 	public void show() { 
+		
+		
+		// creo la camara
+		cam = new OrthographicCamera(Config.ANCHO, Config.ALTO);
+        
 		/*personaje = new Imagen(Recursos.CABALLERO);		
 		personaje.setSize(Config.PERSONAJEANCHO, Config.PERSONAJEALTO);
 		personaje.setPosition(Config.X, Config.Y);
@@ -29,7 +40,9 @@ public class ScreenGame implements Screen{
 		b = Render.batch;
 		sr = new ShapeRenderer(); // Inicializa el ShapeRenderer
 		
+		
         knight = new Knight3(100,100, 200, 200);
+        ghost = new Ghost(500,100, 200, 200);
         
         
 		
@@ -37,6 +50,9 @@ public class ScreenGame implements Screen{
 		
 		
 	}
+	
+	
+
 	private void update(float delta) {
        
 		
@@ -48,6 +64,8 @@ public class ScreenGame implements Screen{
 		
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		cam.update();
+		Render.batch.setProjectionMatrix(cam.combined);
 		
 
         // Maneja las entradas del teclado para cambiar el estado del personaje
@@ -67,6 +85,8 @@ public class ScreenGame implements Screen{
 
         // Actualiza la animación del personaje según el estado actual
         knight.updateAnimation(delta);
+        // Actualiza la animación del personaje según el estado actual
+        ghost.updateAnimation(delta);
 
 		
 	
@@ -74,6 +94,7 @@ public class ScreenGame implements Screen{
         b.begin();
 		
 			knight.render(b);
+			ghost.render(b);
 	
 			
 		b.end();
@@ -91,12 +112,12 @@ public class ScreenGame implements Screen{
 		
 	}
 	
-
 	@Override
 	public void resize(int width, int height) {
-		
-		
+		// El resize de la cam con la ventana
+		cam.setToOrtho(false, width, height);
 	}
+	
 
 	@Override
 	public void pause() {

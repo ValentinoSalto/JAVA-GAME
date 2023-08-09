@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-public class Knight3 {
+public class Ghost {
 
     public enum EstadoPersonaje {
         IDLE,
@@ -36,27 +36,27 @@ public class Knight3 {
 
     private EstadoPersonaje estadoActual;
 
-    public Knight3(float x, float y, float ancho, float alto) {
+    public Ghost(float x, float y, float ancho, float alto) {
         this.x = x;
         this.y = y;
         this.alto = alto;
         this.ancho = ancho;
 
         // Carga las texturas para las animaciones
-        Texture idleTexture = new Texture(Gdx.files.internal("Personajes/Knight_1/Idle.png"));
-        Texture walkingLeftTexture = new Texture(Gdx.files.internal("Personajes/Knight_1/Walk_left.png"));
-        Texture walkingRightTexture = new Texture(Gdx.files.internal("Personajes/Knight_1/Walk.png"));
+        Texture idleTexture = new Texture(Gdx.files.internal("Personajes/Ghost-Files/PNG/ghost-idle.png"));
+        //Texture walkingLeftTexture = new Texture(Gdx.files.internal("Personajes/Knight_2/Walk_left.png"));
+        //Texture walkingRightTexture = new Texture(Gdx.files.internal("Personajes/Knight_2/Walk.png"));
         //Texture attackTexture = new Texture(Gdx.files.internal("Personajes/Knight_1/"));
         // Carga las texturas para las otras animaciones (JUMP, RUN, ATTACK, COVER)
         // ...
 
         // Divide las texturas en regiones para las animaciones
-        TextureRegion[][] idleFrames = TextureRegion.split(idleTexture, idleTexture.getWidth()/4, idleTexture.getHeight());
-        regionsMovement_idle = new TextureRegion[4];
-        TextureRegion[][] walkingLeftFrames = TextureRegion.split(walkingLeftTexture, walkingLeftTexture.getWidth()/8, walkingLeftTexture.getHeight());
+        TextureRegion[][] idleFrames = TextureRegion.split(idleTexture, idleTexture.getWidth()/7, idleTexture.getHeight());
+        regionsMovement_idle = new TextureRegion[7];
+        /*TextureRegion[][] walkingLeftFrames = TextureRegion.split(walkingLeftTexture, walkingLeftTexture.getWidth()/8, walkingLeftTexture.getHeight());
         regionsMovement_walking_left = new TextureRegion[8];
         TextureRegion[][] walkingRightFrames = TextureRegion.split(walkingRightTexture, walkingRightTexture.getWidth()/8, walkingRightTexture.getHeight());
-        regionsMovement_walking_right = new TextureRegion[8];
+        regionsMovement_walking_right = new TextureRegion[8];*/
         //TextureRegion[][] attackFrames = TextureRegion.split(attackTexture, attackTexture.getWidth()/8,attackTexture.getHeight());
         
         // Divide las texturas para las otras animaciones (JUMP, RUN, ATTACK, COVER)
@@ -72,24 +72,25 @@ public class Knight3 {
          
         // Crea las animaciones con las regiones correspondientes 
         //Animacion IDLE
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 7; i++) {
     		regionsMovement_idle[i] = idleFrames[0][i];
-        	idleAnimation = new Animation<>(1 / 5f, idleFrames[0]);
+        	idleAnimation = new Animation<>(1 / 6f, idleFrames[0]);
     		time = 0f;
         }
+        /*
         //Animacion WALKING LEFT
         for (int i = 0; i < 8; i++) {
         	regionsMovement_walking_left[i] = walkingLeftFrames[0][i];
-    		walkingLeftAnimation = new Animation<>(1 / 10f, walkingLeftFrames[0]);
+    		walkingLeftAnimation = new Animation<>(1 / 6f, walkingLeftFrames[0]);
     		time = 0f;
         }
         //Animacion WALKING RIGHT
         for (int i = 0; i < 8; i++) {
         	regionsMovement_walking_right[i] = walkingRightFrames[0][i];
-    		 walkingRightAnimation = new Animation<>(1 / 10f, walkingRightFrames[0]);
+    		 walkingRightAnimation = new Animation<>(1 / 6f, walkingRightFrames[0]);
     		time = 0f;
         }
-        
+        */
         
        
         // Crea las animaciones para las otras acciones (JUMP, RUN, ATTACK, COVER)

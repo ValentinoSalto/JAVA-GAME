@@ -36,7 +36,7 @@ public class ScreenMenu implements Screen{
 	private Stage stage;
 	private Music select;
 	private Music backgroundMusic;
-	
+	private OrthographicCamera cam;
 	
 	
 	public void show() { // Aquí puedes inicializar elementos del menú, como botones o texturas.
@@ -59,7 +59,10 @@ public class ScreenMenu implements Screen{
 	    // Carga el fondo del menú
 		background = new Imagen(Recursos.FONDOMENU);		
 		background.setSize(Config.ANCHO, Config.ALTO);
-		
+
+		// creo la camara
+		cam = new OrthographicCamera(Config.ANCHO, Config.ALTO);
+
 		//Esto es para ahorrarse de poner Render.batch
 		b = Render.batch;
 		
@@ -218,10 +221,11 @@ public class ScreenMenu implements Screen{
 	@Override
 	public void render(float delta) {
 		
+		cam.update();
+		Render.batch.setProjectionMatrix(cam.combined);
 		
 		// Aca dibujas los elementos del menú.
-		
-		
+
 		
 		b.begin();
 			background.dibujar();
@@ -235,9 +239,8 @@ public class ScreenMenu implements Screen{
 
 	@Override
 	public void resize(int width, int height) {
-		
-		
-		
+		// El resize de la cam con la ventana
+		cam.setToOrtho(false, width, height);
 	}
 
 	@Override
